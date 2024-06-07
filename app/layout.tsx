@@ -6,7 +6,9 @@ import {   ClerkProvider,
     SignedOut,
     UserButton
 } from "@clerk/nextjs";
+import { QueryProvider }  from "@/providers/query-provider";
 import "./globals.css";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +25,10 @@ export default function RootLayout({
   return (
       <ClerkProvider>
           <html lang='en'>
-          <body>
-          {children}
+          <body className={inter.className}>
+          <QueryProvider>
+              {children}
+          </QueryProvider>
           </body>
           </html>
       </ClerkProvider>
