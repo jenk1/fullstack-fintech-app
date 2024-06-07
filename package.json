@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@clerk/backend": "^1.2.1",
@@ -17,7 +20,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "drizzle-orm": "^0.31.0",
+    "drizzle-orm": "^0.31.1",
     "hono": "^4.4.0",
     "lucide-react": "^0.379.0",
     "next": "14.2.3",
@@ -32,7 +35,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "drizzle-kit": "^0.22.1",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.22.4",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
