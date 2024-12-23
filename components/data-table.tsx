@@ -25,20 +25,20 @@ import {Input} from "@/components/ui/input";
 import {Trash} from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
-    columns: ColumnDef<TData, TValue>[]
-    data: TData[]
-    filterKey: string
+    columns: ColumnDef<TData, TValue>[];
+    data: TData[];
+    filterKey: string;
     onDelete: (rows: Row<TData>[]) => void;
-    disabled?: boolean
+    disabled?: boolean;
 }
 
 export function DataTable<TData, TValue>({
-                                             columns,
-                                             data,
-                                             filterKey,
-                                             onDelete,
-                                             disabled,
-                                         }: DataTableProps<TData, TValue>) {
+                                            columns,
+                                            data,
+                                            filterKey,
+                                            onDelete,
+                                            disabled,
+                                        }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [rowSelection, setRowSelection ] = React.useState({});

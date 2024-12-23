@@ -46,4 +46,7 @@ export const columns: ColumnDef<ResponseType>[] = [
         )
         }
     },
+    {
+            accessorKey: "email"
+    }
 ]
