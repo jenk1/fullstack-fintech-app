@@ -68,6 +68,7 @@ export const Navigation: React.FC = () => {
                     <nav className="flex flex-col gap-y-2 pt-6">
                         {routes.map((route) => (
                             <Button
+                            key={route.href}
                             variant={route.href === pathName ? "secondary" : "ghost"}
                             onClick={() => onClick(route.href)}
                             className="w-full justify-start"
