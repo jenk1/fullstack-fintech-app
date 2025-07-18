@@ -23,7 +23,8 @@ const AccountsPage = () => {
     const accountsQuery = useGetAccounts();
     const accounts = accountsQuery.data || [];
 
-    const isDisabled = accountsQuery.isLoading || deleteAccounts.isPending;
+    // Only disable for bulk operations, not for individual account operations
+    const isDisabled = deleteAccounts.isPending;
 
     if(accountsQuery.isLoading) {
         return (
