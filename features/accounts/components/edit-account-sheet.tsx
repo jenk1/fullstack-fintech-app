@@ -7,6 +7,7 @@ import { useConfirm } from "@/hooks/use-confirm";
 import { insertAccountSchema } from "@/db/schema";
 import { z } from "zod";
 import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   Sheet,
   SheetContent,
@@ -24,6 +25,7 @@ type FormValues = z.input<typeof formSchema>;
 
 export const EditAccountSheet = () => {
   const { isOpen, onClose, id } = useOpenAccount();
+  const queryClient = useQueryClient();
   const [ConfirmDialog, confirm] = useConfirm(
     "Are you sure?",
     "You are about to delete this account. This action cannot be undone."
@@ -39,6 +41,11 @@ export const EditAccountSheet = () => {
   const onSubmit = (values: FormValues) => {
     editMutation.mutate(values, {
       onSuccess: () => {
+        // Force refresh the accounts list
+        queryClient.invalidateQueries({ queryKey: ["accounts"] });
+        queryClient.invalidateQueries({ queryKey: ["accounts", id] });
+        queryClient.refetchQueries({ queryKey: ["accounts"] });
+        
         toast.success("Account updated");
         onClose();
       },
@@ -54,6 +61,11 @@ export const EditAccountSheet = () => {
     if (ok) {
       deleteMutation.mutate(undefined, {
         onSuccess: () => {
+          // Force refresh the accounts list
+          queryClient.invalidateQueries({ queryKey: ["accounts"] });
+          queryClient.invalidateQueries({ queryKey: ["accounts", id] });
+          queryClient.refetchQueries({ queryKey: ["accounts"] });
+          
           toast.success("Account deleted");
           onClose();
         },

@@ -15,6 +15,9 @@ export const useGetAccounts = () => {
             const {data} = await response.json();
 
             return data;
-        }
+        },
+        // Ensure fresh data after mutations
+        staleTime: 0,
+        refetchOnWindowFocus: true,
     });
 };

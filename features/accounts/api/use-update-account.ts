@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
-import { toast } from "sonner";
 import { z } from "zod";
 
 const updateAccountSchema = z.object({
@@ -29,11 +28,7 @@ export const useUpdateAccount = (id?: string) => {
 
             return response.json();
         },
-        onSuccess: () => {
-            // Use refetchQueries instead of invalidateQueries for more predictable behavior
-            queryClient.refetchQueries({ queryKey: ["accounts"] });
-            queryClient.invalidateQueries({ queryKey: ["accounts", id] });
-        },
+        // Remove onSuccess from hook - handle in component for better control
 
     });
 }; 
